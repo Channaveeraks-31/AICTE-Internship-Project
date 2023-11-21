@@ -1,4 +1,3 @@
-#DataFlair- import modules
 from tkinter import *
 import tkinter.filedialog
 from tkinter import messagebox
@@ -10,7 +9,6 @@ import  os
 class IMG_Stegno:
     output_image_size = 0
 
-    #DataFlair- main frame or start page
     def main(self, root):
         root.title('ImageSteganography by DataFlair')
         root.geometry('500x600')
@@ -36,15 +34,11 @@ class IMG_Stegno:
         root.grid_rowconfigure(1, weight=1)
         root.grid_columnconfigure(0, weight=1)
 
-
-
-    #DataFlair- back function to loop back to main screen
     def back(self,frame):
         frame.destroy()
         self.main(root)
 
     
-    #DataFlair- frame for encode page
     def encode_frame1(self,F):
         F.destroy()
         F2 = Frame(root)
@@ -61,7 +55,6 @@ class IMG_Stegno:
         button_back.grid()
         F2.grid()
 
-    #DataFlair- frame for decode page
     def decode_frame1(self,F):
         F.destroy()
         d_f2 = Frame(root)
@@ -79,7 +72,6 @@ class IMG_Stegno:
         d_f2.grid()
 
 
-    #DataFlair- function to encode image 
     def encode_frame2(self,e_F2):
         e_pg= Frame(root)
         myfile = tkinter.filedialog.askopenfilename(filetypes = ([('png', '*.png'),('jpeg', '*.jpeg'),('jpg', '*.jpg'),('All Files', '*.*')]))
@@ -112,11 +104,6 @@ class IMG_Stegno:
             e_pg.grid(row=1)
             e_F2.destroy()
 
-
-
-
-
-    #DataFlair- function to decode image 
     def decode_frame2(self,d_F2):
         d_F3 = Frame(root)
         myfiles = tkinter.filedialog.askopenfilename(filetypes = ([('png', '*.png'),('jpeg', '*.jpeg'),('jpg', '*.jpg'),('All Files', '*.*')]))
@@ -147,9 +134,6 @@ class IMG_Stegno:
             d_F3.grid(row=1)
             d_F2.destroy()
 
-
-
-    #DataFair- function to decode data
     def decode(self, image):
         image_data = iter(image.getdata())
         data = ''
@@ -169,7 +153,6 @@ class IMG_Stegno:
             if pixels[-1] % 2 != 0:
                 return data
 
-    #DataFlair- function to generate data
     def generate_Data(self,data):
         new_data = []
 
@@ -177,8 +160,6 @@ class IMG_Stegno:
             new_data.append(format(ord(i), '08b'))
         return new_data
 
-
-    #DataFlair- function to modify the pixels of image
     def modify_Pix(self,pix, data):
         dataList = self.generate_Data(data)
         dataLen = len(dataList)
@@ -210,7 +191,6 @@ class IMG_Stegno:
             yield pix[6:9]
     
     
-    #DataFlair- function to enter the data pixels in image
     def encode_enc(self,newImg, data):
         w = newImg.size[0]
         (x, y) = (0, 0)
@@ -226,7 +206,6 @@ class IMG_Stegno:
                 x += 1
 
     
-    #DataFlair- function to enter hidden text
     def enc_fun(self,text_a,myImg):
         data = text_a.get("1.0", "end-1c")
         if (len(data) == 0):
